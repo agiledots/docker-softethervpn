@@ -1,0 +1,25 @@
+# https://github.com/SoftEtherVPN/SoftEtherVPN_Stable
+# https://hub.docker.com/r/siomiz/softethervpn/
+version: "3"
+services:
+  app:
+    image: siomiz/softethervpn
+    container_name: softether-bridge
+    environment:
+      - USERS=user1:password1;user2:password2
+      - PSK=dotuian
+    #      - SPW=password # Server management password
+    #      - HPW=test # hub management password
+    # volumes:
+    #   - ./vpn_server.config:/usr/vpnserver/vpn_server.config:z
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"
+    privileged: true
+    ports:
+      - 500:500/udp # for L2TP/IPSec
+      - 4500:4500/udp # for L2TP/IPSec
+      - 1701:1701/tcp # for L2TP/IPSec
+      - 1194:1194/udp # for OpenVPN
+      - 5555:5555/tcp # for SoftEther VPN (recommended by vendor)
+      - 992:992/tcp # 
