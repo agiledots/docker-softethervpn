@@ -8,13 +8,18 @@
 
 sudo amazon-linux-extras install docker
 sudo service docker start
+
 sudo usermod -a -G docker ec2-user
+sudo chown $USER /var/run/docker.sock
+
 
 sudo chkconfig docker on
 sudo yum install -y git
 
 sudo reboot
 ```
+
+> https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/docker-basics.html
 
 
 ### docker-compose 
